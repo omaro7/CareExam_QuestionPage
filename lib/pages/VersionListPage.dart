@@ -226,12 +226,14 @@ class _VersionListState extends State<VersionListPage> {
                         itemCount: snapshot.data?.length,
                         itemBuilder: (context, index){
                           QuestionS questionS = snapshot.data![index];
-                          Logger logger = Logger();
-                          logger.d(questionS.res_be_question.toString());
-                          return Card(
-                              child: ListTile(
-                                title: Text(questionS.res_be_version.toString()),
-                              )
+                          return Container(
+                              width: 120,
+                              height: 40,
+                              child:Card(
+                                child: ListTile(
+                                  title: Text(questionS.res_be_version.toString()),
+                                ),
+                              ),
                           );
                         },
                       );
