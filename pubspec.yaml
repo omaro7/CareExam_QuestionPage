@@ -1,0 +1,66 @@
+name: careexam
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.5
+  lottie: ^2.5.0
+  flutter_launcher_icons: ^0.13.1
+  http: ^0.13.5
+  get: ^4.6.5
+  logger: ^1.4.0
+  fluttertoast: ^8.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.3.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/lottie/bg_02_pink.json
+    - assets/lottie/loading_bear.json
+    - assets/lottie/bg_full_screen_night.json
+    - assets/lottie/wheelchair.json
+    - assets/lottie/walking_avocado.json
+    - assets/lottie/walking_broccoli.json
+    - assets/lottie/walking_coffee_time.json
+    - assets/lottie/walking_donut.json
+    - assets/lottie/walking_french_fries.json
+    - assets/lottie/walking_orange.json
+    - assets/lottie/walking_potato.json
+    - assets/lottie/walking_pothos.json
+    - assets/lottie/walking_taco.json
+    - assets/lottie/good.json
+    - assets/lottie/fail_bear.json
+    - assets/lottie/toad.json
+    - assets/lottie/diamond.json
+    - assets/icon/ic_launcher_144.png
+
+fonts:
+  - family: spoqahansansneo
+    fonts:
+      - asset: font/spoqahansansneo/spoqahansansneothin.otf
+      - asset: font/spoqahansansneo/spoqahansansneolight.otf
+      - asset: font/spoqahansansneo/spoqahansansneoregular.otf
+      - asset: font/spoqahansansneo/spoqahansansneomedium.otf
+      - asset: font/spoqahansansneo/spoqahansansneobold.otf
+
+flutter_native_splash:
+  color: "#42a5f5"
+  android: false
+  ios: false
+  android_gravity: center
+  android_fullscreen: true

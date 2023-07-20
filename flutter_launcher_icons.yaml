@@ -1,0 +1,6 @@
+#사용법
+#Terminal >> flutter pub run flutter_launcher_icons:main
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/ic_launcher_144.png"

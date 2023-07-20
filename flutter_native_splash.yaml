@@ -1,0 +1,10 @@
+#사용법
+#Terminal >> flutter pub run flutter_native_splash:create
+# 삭제  flutter pub run flutter_native_splash:remove
+
+flutter_native_splash:
+  color: "#42a5f5"
+  android: false
+  ios: false
+  android_gravity: center
+  android_fullscreen: true
