@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart';
 import 'package:careexam/class/Globals.dart' as globals;
 import 'package:careexam/class/Init.dart';
 import '../model/QuestionS.dart';
+import 'package:careexam/pages/QuestionPage.dart';
+
+enum SWITCH_TYPE{
+  ANSWER,
+  RANDOM,
+  EXAM
+}
+
+bool _isAnswerEnabled = false;
+bool _isRandomEnabled = false;
+bool _isExamEnabled = false;
+
 
 class VersionListPage extends StatefulWidget {
   const VersionListPage() : super(key: null);
@@ -14,13 +27,11 @@ class VersionListPage extends StatefulWidget {
 class _VersionListState extends State<VersionListPage> {
 
   late Future<List<QuestionS>> mVersionList;
-  bool _isAnswerEnabled = false;
-  bool _isRandomEnabled = false;
-  bool _isExamEnabled = false;
 
   @override
   void initState() {
     //setVersionList();
+
     super.initState();
   }
 
@@ -67,10 +78,11 @@ class _VersionListState extends State<VersionListPage> {
             color: Colors.white,
           ),
         ),
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.white,
-          size: 24,
+        leading: IconButton(
+          icon:Icon(Icons.arrow_back, size: 24, color:Colors.white),
+          onPressed:(){
+            Navigator.of(context).pop();
+          }
         ),
       ),
       extendBodyBehindAppBar: true,   //body 위에 appbar
@@ -174,7 +186,7 @@ class _VersionListState extends State<VersionListPage> {
                           value: _isAnswerEnabled,
                           onChanged: (value) {
                             setState((){
-                              _isAnswerEnabled = value;
+                              checkSwitch(SWITCH_TYPE.ANSWER, value);
                             });
                           },
                           activeColor: Color(0xff82e83a),
@@ -197,7 +209,7 @@ class _VersionListState extends State<VersionListPage> {
                           value: _isRandomEnabled,
                           onChanged: (value) {
                             setState((){
-                              _isRandomEnabled = value;
+                              checkSwitch(SWITCH_TYPE.RANDOM, value);
                             });
                           },
                           activeColor: Color(0xff82e83a),
@@ -220,7 +232,7 @@ class _VersionListState extends State<VersionListPage> {
                             value: _isExamEnabled,
                             onChanged: (value) {
                               setState((){
-                                _isExamEnabled = value;
+                                checkSwitch(SWITCH_TYPE.EXAM, value);
                               });
                             },
                             activeColor: Color(0xff82e83a),
@@ -262,9 +274,17 @@ class _VersionListState extends State<VersionListPage> {
                             itemBuilder: (context, index){
                               QuestionS questionS = snapshot.data![index];
                               return Container(
-                                  child:Card(
-                                    child: ListTile(
-                                      title: Text(questionS.res_be_version.toString()),
+                                  child: InkWell(
+                                    onTap: () {
+                                      showToast("요양보호사 버전 ${questionS.res_be_version} tapped");
+                                      Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => QuestionPage(key:UniqueKey(), version:questionS.res_be_version.toString(), isAnswerMode: _isAnswerEnabled, isRandomMode:_isRandomEnabled, isExamMode: _isExamEnabled)),
+                                      );
+                                    },
+                                    child:Card(
+                                      child: ListTile(
+                                        title: Text(questionS.res_be_version.toString()),
+                                      ),
                                     ),
                                   ),
                               );
@@ -283,4 +303,37 @@ class _VersionListState extends State<VersionListPage> {
       ),
     );
   }
+}
+/**
+ * 스위치버튼 선택 시, 처리
+ * 정답모드 선택 시, 시험모드 false
+ * 시험모드 선택 시, 정답모드 false
+ */
+void checkSwitch(SWITCH_TYPE switchType, bool v){
+  if(SWITCH_TYPE.ANSWER == switchType){ //정답모드
+    _isAnswerEnabled = v;
+    _isExamEnabled = !v;
+  }else if(SWITCH_TYPE.RANDOM == switchType){ //랜덤모드
+    _isRandomEnabled = v;
+    _isExamEnabled = !v;
+  }else if(SWITCH_TYPE.EXAM == switchType){ //시험모드
+    _isExamEnabled = v;
+    _isAnswerEnabled = !v;
+    _isRandomEnabled = !v;
+  }
+}
+
+/**
+ * int leftDice = 1;
+ * leftDice = Random().nextInt(6) + 1; // 1부터 6까지 랜덤 숫자
+ * showToast('왼쪽: $leftDice, 오른쪽:$rightDice');
+ */
+void showToast(String message){
+  Fluttertoast.showToast(
+      msg:message,
+      backgroundColor: Colors.white,
+      textColor: Colors.amber[800],
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.TOP
+  );
 }
