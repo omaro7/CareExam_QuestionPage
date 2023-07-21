@@ -51,6 +51,15 @@ class _VersionListState extends State<VersionListPage> {
       body: Stack(
         alignment: Alignment.topLeft,
         children: [
+          //01.배경 lottie
+          Lottie.asset(
+            "assets/lottie/bg_full_screen_night.json",            //배경 https://assets4.lottiefiles.com/packages/lf20_OXZeQi.json",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.fill,
+            repeat: true,
+            animate: true,
+          ),
           Container(
             alignment: Alignment.topLeft,
             margin: EdgeInsets.all(0),
@@ -170,7 +179,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Text(
-                      "시험모드",
+                      "시험모정",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
                       style: TextStyle(
