@@ -125,7 +125,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Container(
-                      width: 80,
+                      width: 100,
                       height: 20,
                       child:SwitchListTile(
                         title: const Text('#1'),
@@ -153,7 +153,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Container(
-                      width: 80,
+                      width: 100,
                       height: 20,
                       child:SwitchListTile(
                         title: const Text('#2'),
@@ -181,7 +181,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Container(
-                      width: 80,
+                      width: 100,
                       height: 20,
                       child:SwitchListTile(
                         title: const Text('#3'),
@@ -227,8 +227,8 @@ class _VersionListState extends State<VersionListPage> {
                         itemBuilder: (context, index){
                           QuestionS questionS = snapshot.data![index];
                           return Container(
-                              width: 120,
-                              height: 40,
+                              //width: 120,
+                              //height: 40,
                               child:Card(
                                 child: ListTile(
                                   title: Text(questionS.res_be_version.toString()),
