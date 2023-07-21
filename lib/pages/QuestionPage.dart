@@ -21,7 +21,7 @@ class _QuestionPageState extends State<QuestionPage> {
   void initState() {
 
     Logger logger = Logger();
-    logger.d("version : ${widget.version}, isAnswerMode : ${widget.isAnswerMode}, isRandomMode : ${widget.isRandomMode}, isExamMode : ${widget.isExamMode}");
+    logger.d("version1 : ${widget.version}, isAnswerMode : ${widget.isAnswerMode}, isRandomMode : ${widget.isRandomMode}, isExamMode : ${widget.isExamMode}");
     questionList = Init.instance.fetchPost();
     setQuestionList();
     super.initState();
