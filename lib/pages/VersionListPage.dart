@@ -68,13 +68,13 @@ class _VersionListState extends State<VersionListPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Lottie.network(
-                  "https://assets2.lottiefiles.com/packages/lf20_aZTdD5.json",
+                Lottie.asset(
+                  "assets/lottie/walking_coffee_time.json",
                   height: 60,
                   width: 60,
                   fit: BoxFit.cover,
-                  repeat: false,
-                  animate: false,
+                  repeat: true,
+                  animate: true,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +84,7 @@ class _VersionListState extends State<VersionListPage> {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Text",
+                        "요양보호사 자격증 취득하기",
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
@@ -96,7 +96,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Text(
-                      "Text",
+                      "누구나 쉽게 요양보호사 자격증을 취득할 수 있다",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
                       style: TextStyle(
@@ -114,7 +114,7 @@ class _VersionListState extends State<VersionListPage> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      "Text",
+                      "정답노출모드",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
                       style: TextStyle(
@@ -142,7 +142,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Text(
-                      "Text",
+                      "랜덤항목",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
                       style: TextStyle(
@@ -170,7 +170,7 @@ class _VersionListState extends State<VersionListPage> {
                       ),
                     ),
                     Text(
-                      "Text",
+                      "시험모드",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
                       style: TextStyle(
