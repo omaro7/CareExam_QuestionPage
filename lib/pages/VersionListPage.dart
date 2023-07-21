@@ -245,111 +245,40 @@ class _VersionListState extends State<VersionListPage> {
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12.0),
             ),
-            child:Container(
-              alignment: Alignment.topLeft,
-              child: SingleChildScrollView(
-                child:Column(
-                  children:[
-                    Container(
-                      //alignment: Alignment.topLeft,
-                      padding: EdgeInsets.all(0),
-                      height: MediaQuery.of(context).size.height * 0.5900000000000001,
-                      child:FutureBuilder<List<QuestionS>>(
-                        future: getVersionList(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            print(snapshot.data?.length); // question
-                            return ListView.builder(
-                              shrinkWrap: true,         // 미지정시, size 에러 발생함.
-                              itemCount: snapshot.data?.length,
-                              itemBuilder: (context, index){
-                                QuestionS questionS = snapshot.data![index];
-                                return Container(
-                                    //width: 120,
-                                    //height: 40,
-                                    alignment: Alignment.topLeft,
-                                    child:Card(
-                                      child: ListTile(
-                                        title: Text(questionS.res_be_version.toString()),
-                                      ),
+            child:
+              Container(
+                padding: EdgeInsets.all(0),
+                height: MediaQuery.of(context).size.height * 0.5900000000000001,
+                child:FutureBuilder<List<QuestionS>>(
+                  future: getVersionList(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      print(snapshot.data?.length); // question
+                      return Align(
+                          alignment: Alignment.topCenter,
+                          child:ListView.builder(
+                            shrinkWrap: false,
+                            itemCount: snapshot.data?.length,
+                            itemBuilder: (context, index){
+                              QuestionS questionS = snapshot.data![index];
+                              return Container(
+                                  child:Card(
+                                    child: ListTile(
+                                      title: Text(questionS.res_be_version.toString()),
                                     ),
-                                );
-                              },
-                            );
-                          } else if (snapshot.hasError) {
-                            return Text("${snapshot.error}");
-                          }
-                          return CircularProgressIndicator();
-                        },
-                      ),
-                    ),
-                  ],
+                                  ),
+                              );
+                            },
+                          ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+                    return CircularProgressIndicator();
+                  },
                 ),
-                /*
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    SizedBox(
-                      height: 16,
-                      width: 16,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.all(0),
-                          padding: EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Color(0x343a57e8),
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.work_outlined,
-                            color: Color(0xff3a57e8),
-                            size: 24,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Text(
-                              "Company ",
-                              textAlign: TextAlign.start,
-                              overflow: TextOverflow.clip,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: Color(0xff808080),
-                      height: 16,
-                      thickness: 0.1,
-                      indent: 0,
-                      endIndent: 0,
-                    ),
-                    SizedBox(
-                      height: 16,
-                      width: 16,
-                    ),
-                  ],
-                ),
-                 */
               ),
             ),
-          ),
         ],
       ),
     );
